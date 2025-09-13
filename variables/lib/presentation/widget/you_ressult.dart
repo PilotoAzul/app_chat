@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:variables/Domain/entities/message_entitie.dart';
 class YouResult extends StatelessWidget {
-  const YouResult({super.key});
+final Message messageHer;
+
+  const YouResult({
+    super.key,
+    required this.messageHer
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +26,14 @@ class YouResult extends StatelessWidget {
               vertical: 10
             ),
             child:  Text(
-              'Respuesta de ella',
+              messageHer.text,
               style: TextStyle(color: Colors.black),
             ),
           ),
         ),
         SizedBox(height: 5,),
-        _ImageB()
-        ,SizedBox(height: 15,),
+        _ImageB(messageHer.imageUrl!),// el signo de admiracion es para decir que si o si recibe una imagen
+        SizedBox(height: 15,),
       ],
     );
   }
@@ -35,13 +41,18 @@ class YouResult extends StatelessWidget {
 
 class _ImageB extends StatelessWidget {
 
+  final String urlImage;
+  const _ImageB(this.urlImage);
+
   @override
   Widget build(BuildContext context) {
+    
+
     final size = MediaQuery.of(context).size;
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Image.network(
-        'https://cdn.storyboardthat.com/site-images/gifs/bunny-planet-animated-gif.gif',
+        urlImage,
         width:  size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,

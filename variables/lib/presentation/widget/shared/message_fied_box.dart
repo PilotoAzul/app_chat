@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MessageBox extends StatelessWidget {
-  const MessageBox({super.key});
+
+  final ValueChanged<String> onValue;
+  
+  const MessageBox({super.key, required this.onValue});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,9 @@ class MessageBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(40)
         );
     return TextFormField(
+      onTapOutside: (event) {
+        focusNode.unfocus();
+      },
       focusNode: focusNode,
       controller: textController,
 
@@ -24,15 +30,17 @@ class MessageBox extends StatelessWidget {
         suffixIcon: IconButton(
           onPressed: () {
             final textValue = textController.value.text;
-            print('mesaje $textValue');
+            onValue(textValue);
             textController.clear();
           },
           icon: Icon(Icons.send_outlined),
         ),
       ),
       onFieldSubmitted: (value){
+        onValue(value);
         textController.clear();
-      }
+        focusNode.requestFocus();
+      },
     );
   }
 }

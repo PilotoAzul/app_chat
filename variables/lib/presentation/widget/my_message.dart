@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:variables/Domain/entities/message_entitie.dart';
 class MyMessage extends StatelessWidget {
-  const MyMessage({super.key});
+
+  final Message menssageText;
+  
+  const MyMessage({
+    super.key,
+    required this.menssageText
+    });
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +28,8 @@ class MyMessage extends StatelessWidget {
               vertical: 10
             ),
             child:  Text(
-              'Mis mensajes',
-              style: TextStyle(color: Colors.white12),
+              menssageText.text,
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ),

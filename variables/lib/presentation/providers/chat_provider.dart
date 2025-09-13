@@ -13,7 +13,7 @@ class ChatProvider extends ChangeNotifier {
 
   ];
 
-  Future<void> SendMenssge(String text) async{// enviar mensaje
+  Future<void> SendMenssage(String text) async{// enviar mensaje
   if (text.isEmpty) return;
     final newMesagge = Message(text: text, fromWho: FromWho.mys);
     messageList.add(newMesagge);
